@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_savana"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="@string/txt_title"
+        android:textColor="@color/white"
+        android:textSize="34sp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/iv_animal_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="50dp"
+            android:background="@drawable/bg_white_radius"
+            android:elevation="6dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_elephant" />
+
+        <ImageView
+            android:id="@+id/iv_start"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="end|top"
+            android:layout_marginHorizontal="50dp"
+            android:elevation="6dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_start" />
+
+        <ImageView
+            android:id="@+id/iv_search"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="start|top"
+            android:layout_marginHorizontal="60dp"
+            android:background="@drawable/bg_white_circle"
+            android:elevation="6dp"
+            android:padding="10dp"
+            android:layout_marginVertical="15dp"
+            android:src="@drawable/ic_action_search"
+            android:tint="@color/yellow" />
+    </FrameLayout>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="50dp"
+            android:elevation="6dp"
+            android:padding="10dp"
+            android:rotation="180"
+            android:src="@drawable/ic_back" />
+
+        <ImageView
+            android:id="@+id/iv_next"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="50dp"
+            android:elevation="6dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_back" />
+    </TableRow>
+</LinearLayout>

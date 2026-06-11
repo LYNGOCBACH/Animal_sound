@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="teal_200">#03DAC5</color>
+    <color name="teal_700">#018786</color>
+    <color name="teal_900">#005D58</color>
+    <color name="teal_100">#E0F2F1</color>
+    <color name="teal_50">#E6FCF9</color>
+    <color name="teal_500">#009688</color>
+    <color name="teal_800">#00675B</color>
+    <color name="teal_300">#4DB6AC</color>
+    <color name="green">#388E3C</color>
+    <color name="blue">#3F51B5</color>
+    <color name="bg_app">#B0B3B0</color>
+    <color name="gray_light">#CAC8C8</color>
+    <color name="yellow">#F3DC11</color>
+    <color name="gray_mid">#C7CAC7FF</color>
+    <color name="whiteAlpha">#66FFFFFF</color>
+
+</resources>
