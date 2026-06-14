@@ -14,6 +14,7 @@ import com.bach.animalsoundmvvm.R;
 import com.bach.animalsoundmvvm.databinding.M002DetailFrgBinding;
 import com.bach.animalsoundmvvm.model.Animal;
 import com.bach.animalsoundmvvm.view.CommonVM;
+import com.bach.animalsoundmvvm.view.dialog.DetailInfoDialog;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -56,8 +57,14 @@ public class M002DetailFrg extends BaseFragment<M002DetailFrgBinding, CommonVM> 
         } else if (v.getId() == R.id.iv_start) {
             doStart();
         } else if (v.getId() == R.id.iv_search) {
-            doSearch(App.getInstance().getStorage().listAnimal.get(index).getName());
+//            doSearch(App.getInstance().getStorage().listAnimal.get(index).getName());
+            showInfoDialog(App.getInstance().getStorage().listAnimal.get(index));
         }
+    }
+
+    private void showInfoDialog(Animal animal) {
+        DetailInfoDialog dialog = new DetailInfoDialog(context, animal);
+        dialog.show();
     }
 
     private void doSearch(String name) {

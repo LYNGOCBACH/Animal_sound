@@ -17,5 +17,6 @@
     <color name="yellow">#F3DC11</color>
     <color name="gray_mid">#C7CAC7FF</color>
     <color name="whiteAlpha">#66FFFFFF</color>
+    <color name="purple_700">#B73A51</color>
 
 </resources>

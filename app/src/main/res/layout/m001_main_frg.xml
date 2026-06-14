@@ -18,7 +18,8 @@
     <LinearLayout
         android:id="@+id/ln_animal_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -32,4 +33,19 @@
         <!--                android:layout_height="140dp" />-->
         <!--        </TableRow>-->
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_game"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/bg_button"
+        android:backgroundTint="@color/yellow"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="Mini Game :)"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
 </LinearLayout>

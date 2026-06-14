@@ -16,6 +16,7 @@ import com.bach.animalsoundmvvm.R;
 import com.bach.animalsoundmvvm.databinding.M001MainFrgBinding;
 import com.bach.animalsoundmvvm.model.Animal;
 import com.bach.animalsoundmvvm.view.CommonVM;
+import com.bach.animalsoundmvvm.view.dialog.MiniGameDialog;
 
 import java.util.Locale;
 
@@ -27,6 +28,7 @@ public class M001MainFrg extends BaseFragment<M001MainFrgBinding, CommonVM> {
 
     @Override
     protected void initViews() {
+        binding.tvGame.setOnClickListener(this);
         initData();
         initAnimalViews();
 
@@ -85,8 +87,17 @@ public class M001MainFrg extends BaseFragment<M001MainFrgBinding, CommonVM> {
 
     @Override
     protected void clickView(View view) {
+        if (view.getId() == R.id.tv_game) {
+            showMiniGame();
+            return;
+        }
         Animal tag = (Animal) view.getTag();
         gotoDetailScreen(tag);
+    }
+
+    private void showMiniGame() {
+        MiniGameDialog dialog = new MiniGameDialog(context, App.getInstance().getStorage().listAnimal);
+        dialog.show();
     }
 
     private void gotoDetailScreen(Animal animal) {
@@ -96,15 +107,15 @@ public class M001MainFrg extends BaseFragment<M001MainFrgBinding, CommonVM> {
 
     private void initData() {
         App.getInstance().getStorage().listAnimal.clear();
-        App.getInstance().getStorage().listAnimal.add(new Animal(R.drawable.ic_elephant, R.raw.elephant, "elephant"));
-        App.getInstance().getStorage().listAnimal.add(new Animal(R.drawable.ic_zebra, R.raw.zebra, "zebra"));
-        App.getInstance().getStorage().listAnimal.add(new Animal(R.drawable.ic_lion, R.raw.lion, "lion"));
-        App.getInstance().getStorage().listAnimal.add(new Animal(R.drawable.ic_hippo, R.raw.hippo, "hippo"));
-        App.getInstance().getStorage().listAnimal.add(new Animal(R.drawable.ic_camel, R.raw.camel, "camel"));
-        App.getInstance().getStorage().listAnimal.add(new Animal(R.drawable.ic_rhino, R.raw.rhino, "rhino"));
-        App.getInstance().getStorage().listAnimal.add(new Animal(R.drawable.ic_tiger, R.raw.tiger, "tiger"));
-        App.getInstance().getStorage().listAnimal.add(new Animal(R.drawable.ic_crocodile, R.raw.crocodile, "crocodile"));
-        App.getInstance().getStorage().listAnimal.add(new Animal(R.drawable.ic_dolphin, R.raw.dolphin, "dolphin"));
+        App.getInstance().getStorage().listAnimal.add(new Animal(R.drawable.ic_elephant, R.raw.elephant, "Elephant"));
+        App.getInstance().getStorage().listAnimal.add(new Animal(R.drawable.ic_zebra, R.raw.zebra, "Zebra"));
+        App.getInstance().getStorage().listAnimal.add(new Animal(R.drawable.ic_lion, R.raw.lion, "Lion"));
+        App.getInstance().getStorage().listAnimal.add(new Animal(R.drawable.ic_hippo, R.raw.hippo, "Hippo"));
+        App.getInstance().getStorage().listAnimal.add(new Animal(R.drawable.ic_camel, R.raw.camel, "Camel"));
+        App.getInstance().getStorage().listAnimal.add(new Animal(R.drawable.ic_rhino, R.raw.rhino, "Rhino"));
+        App.getInstance().getStorage().listAnimal.add(new Animal(R.drawable.ic_tiger, R.raw.tiger, "Tiger"));
+        App.getInstance().getStorage().listAnimal.add(new Animal(R.drawable.ic_crocodile, R.raw.crocodile, "Crocodile"));
+        App.getInstance().getStorage().listAnimal.add(new Animal(R.drawable.ic_dolphin, R.raw.dolphin, "Dolphin"));
 
     }
 

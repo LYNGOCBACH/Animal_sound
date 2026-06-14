@@ -1,5 +1,9 @@
 package com.bach.animalsoundmvvm.view.act;
 
+import androidx.appcompat.app.AlertDialog;
+
+import android.util.Log;
+
 import com.bach.animalsoundmvvm.databinding.ActivityHomeBinding;
 import com.bach.animalsoundmvvm.view.CommonVM;
 import com.bach.animalsoundmvvm.view.OnMainCallBack;
@@ -26,5 +30,26 @@ public class HomeActivity extends BaseAct<ActivityHomeBinding, CommonVM> impleme
     @Override
     public void backToPrevious() {
         onBackPressed();
+    }
+
+    @Override
+    public void onBackPressed() {
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+        Log.i(TAG, "onBackPressed: " + count);
+        if (count == 0) {
+            askForExitApp();
+            return;
+        }
+        super.onBackPressed();
+    }
+
+    private void askForExitApp() {
+        AlertDialog alert = new AlertDialog.Builder(this).create();
+        alert.setTitle("Alert");
+        alert.setMessage("Do you want to exit?");
+        alert.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", (dialog, which) -> super.onBackPressed());
+        alert.setButton(AlertDialog.BUTTON_NEGATIVE, "No", (dialog, which) -> {
+        });
+        alert.show();
     }
 }
