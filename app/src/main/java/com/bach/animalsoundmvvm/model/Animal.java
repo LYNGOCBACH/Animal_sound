@@ -3,21 +3,21 @@ package com.bach.animalsoundmvvm.model;
 import java.util.Objects;
 
 public class Animal {
-    private final int idPhoto;
-    private final int idSound;
+    private final String idPhoto;
+    private final String idSound;
     private final String name;
 
-    public Animal(int ivPhoto, int idSound,String name) {
+    public Animal(String ivPhoto, String idSound, String name) {
         this.idPhoto = ivPhoto;
         this.idSound = idSound;
         this.name = name;
     }
 
-    public int getIdPhoto() {
+    public String getIdPhoto() {
         return idPhoto;
     }
 
-    public int getIdSound() {
+    public String getIdSound() {
         return idSound;
     }
 
@@ -29,7 +29,7 @@ public class Animal {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Animal animal = (Animal) o;
-        return idPhoto == animal.idPhoto;
+        return idPhoto.equals(animal.idPhoto);
     }
 
     @Override

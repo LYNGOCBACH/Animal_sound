@@ -2,6 +2,7 @@ package com.bach.animalsoundmvvm.view.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.Gravity;
@@ -18,11 +19,15 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.bach.animalsoundmvvm.App;
+import com.bach.animalsoundmvvm.CommonUtils;
 import com.bach.animalsoundmvvm.R;
 import com.bach.animalsoundmvvm.databinding.ViewDetailInfoBinding;
 import com.bach.animalsoundmvvm.databinding.ViewMiniGameBinding;
 import com.bach.animalsoundmvvm.model.Animal;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -30,6 +35,7 @@ import java.util.List;
 import java.util.Random;
 
 public class MiniGameDialog extends Dialog implements View.OnClickListener {
+    private static final String KEY_SCORE = "KEY_SCORE";
     private final ViewMiniGameBinding binding;
     private Animal animal;
     private Context context;
@@ -55,6 +61,11 @@ public class MiniGameDialog extends Dialog implements View.OnClickListener {
         binding.tvA.setOnClickListener(this);
         binding.tvB.setOnClickListener(this);
         initCard();
+        String txtScore = CommonUtils.getINSTANCE().getPref(KEY_SCORE);
+        if (txtScore != null) {
+            score = Integer.parseInt(txtScore);
+            binding.tvScore.setText("Score: " + score);
+        }
     }
 
     private void initCard() {
@@ -130,10 +141,15 @@ public class MiniGameDialog extends Dialog implements View.OnClickListener {
                 index = 0;
             }
             initCard();
+            savePoint();
         } else {
             Toast.makeText(context, "Wrong Answer", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    private void savePoint() {
+        CommonUtils.getINSTANCE().savePref(KEY_SCORE, score + "");
     }
 
     private void showCardAnimal() {
@@ -144,7 +160,14 @@ public class MiniGameDialog extends Dialog implements View.OnClickListener {
 
         Toast toast = new Toast(context);
         ImageView ivAnimal = new ImageView(context);
-        ivAnimal.setImageResource(animal.getIdPhoto());
+        try {
+            InputStream in1 = App.getInstance().getAssets().open(animal.getIdPhoto());
+            ivAnimal.setImageBitmap(BitmapFactory.decodeStream(in1));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
         toast.setView(ivAnimal);
 
         toast.setGravity(Gravity.CENTER, 0, 100);
