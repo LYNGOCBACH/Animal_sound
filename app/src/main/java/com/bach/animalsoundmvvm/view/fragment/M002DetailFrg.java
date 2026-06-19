@@ -1,5 +1,7 @@
 package com.bach.animalsoundmvvm.view.fragment;
 
+import static androidx.core.app.ActivityCompat.requestPermissions;
+
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -21,8 +23,9 @@ import com.bach.animalsoundmvvm.R;
 
 import com.bach.animalsoundmvvm.databinding.M002DetailFrgBinding;
 import com.bach.animalsoundmvvm.model.Animal;
-import com.bach.animalsoundmvvm.view.CommonVM;
+import com.bach.animalsoundmvvm.view.viewmodel.CommonVM;
 import com.bach.animalsoundmvvm.view.dialog.DetailInfoDialog;
+import com.bach.animalsoundmvvm.view.viewmodel.M002DetailVM;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -32,7 +35,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
 
-public class M002DetailFrg extends BaseFragment<M002DetailFrgBinding, CommonVM> {
+public class M002DetailFrg extends BaseFragment<M002DetailFrgBinding, M002DetailVM> {
     public static final String TAG = M002DetailFrg.class.getName();
     private int index;
 
@@ -85,38 +88,19 @@ public class M002DetailFrg extends BaseFragment<M002DetailFrgBinding, CommonVM> 
         }
     }
 
-    private void saveToStorage() {
+    public void saveToStorage() {
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.Q) {
-            if (context.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            if (App.getInstance().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 101);
                 return;
             }
         }
+
         new MTask("KEY_SAVE_PHOTO", new MTask.OnCallBack() {
             @Override
             public Object execTask(String key, Object params, MTask task) {
                 Animal animal = App.getInstance().getStorage().listAnimal.get(index);
-                try {
-                    InputStream in = App.getInstance().getAssets().open(animal.getIdPhoto());
-                    byte[] buff = new byte[1024];
-//                    String outPath = App.getInstance().getExternalFilesDir(null).getPath();
-                    String outPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath();
-
-                    FileOutputStream out = new FileOutputStream(new File(outPath + "/" + animal.getName() + ".png"));
-                    int len = in.read(buff);
-                    while (len > 0) {
-                        out.write(buff, 0, len);
-                        len = in.read(buff);
-                    }
-                    in.close();
-                    out.close();
-//                    Toast.makeText(context, "Save to storage", Toast.LENGTH_SHORT).show();
-                    Log.i(TAG, "run: save to storage");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    return null;
-                }
-                return true;
+                return viewModel.copyPhotoToStorage(animal);
             }
 
             @Override
@@ -154,6 +138,7 @@ public class M002DetailFrg extends BaseFragment<M002DetailFrgBinding, CommonVM> 
 //            }
 //        }).start();
     }
+
 
     private void playSound(String idSound) {
         try {
@@ -215,8 +200,8 @@ public class M002DetailFrg extends BaseFragment<M002DetailFrgBinding, CommonVM> 
     }
 
     @Override
-    protected Class<CommonVM> initViewModel() {
-        return CommonVM.class;
+    protected Class<M002DetailVM> initViewModel() {
+        return M002DetailVM.class;
     }
 
     @Override

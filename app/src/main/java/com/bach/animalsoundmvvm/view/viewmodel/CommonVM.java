@@ -1,4 +1,4 @@
-package com.bach.animalsoundmvvm.view;
+package com.bach.animalsoundmvvm.view.viewmodel;
 
 import androidx.lifecycle.ViewModel;
 

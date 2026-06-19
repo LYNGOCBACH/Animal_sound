@@ -5,7 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import android.util.Log;
 
 import com.bach.animalsoundmvvm.databinding.ActivityHomeBinding;
-import com.bach.animalsoundmvvm.view.CommonVM;
+import com.bach.animalsoundmvvm.view.viewmodel.CommonVM;
 import com.bach.animalsoundmvvm.view.OnMainCallBack;
 import com.bach.animalsoundmvvm.view.fragment.M000SplashFrg;
 

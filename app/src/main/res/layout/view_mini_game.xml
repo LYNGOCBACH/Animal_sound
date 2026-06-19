@@ -91,6 +91,17 @@
             android:textColor="@color/purple_700"
             android:textSize="38sp"
             android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/iv_animal"
+            android:layout_width="180dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center_horizontal"
+            android:padding="8dp"
+            android:visibility="gone"
+            android:background="@drawable/bg_background_card"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_elephant" />
     </FrameLayout>
 
     <View
@@ -110,8 +121,8 @@
         android:fontFamily="sans-serif"
         android:paddingHorizontal="20dp"
         android:paddingVertical="15dp"
-        android:text="A: Elephant"
         android:singleLine="true"
+        android:text="A: Elephant"
         android:textColor="@color/white"
         android:textSize="28sp"
         android:textStyle="bold" />
@@ -128,8 +139,8 @@
         android:fontFamily="sans-serif"
         android:paddingHorizontal="20dp"
         android:paddingVertical="15dp"
-        android:text="B: Zebra"
         android:singleLine="true"
+        android:text="B: Zebra"
         android:textColor="@color/white"
         android:textSize="28sp"
         android:textStyle="bold" />

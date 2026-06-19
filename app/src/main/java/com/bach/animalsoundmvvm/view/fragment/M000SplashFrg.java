@@ -1,15 +1,12 @@
 package com.bach.animalsoundmvvm.view.fragment;
 
 
-import android.content.Intent;
 import android.os.Handler;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import com.bach.animalsoundmvvm.databinding.M000SplashFrgBinding;
-import com.bach.animalsoundmvvm.view.CommonVM;
-import com.bach.animalsoundmvvm.view.act.HomeActivity;
+import com.bach.animalsoundmvvm.view.viewmodel.CommonVM;
 
 
 public class M000SplashFrg extends BaseFragment<M000SplashFrgBinding, CommonVM> {

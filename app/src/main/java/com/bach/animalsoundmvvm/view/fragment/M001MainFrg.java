@@ -16,15 +16,15 @@ import com.bach.animalsoundmvvm.App;
 import com.bach.animalsoundmvvm.R;
 import com.bach.animalsoundmvvm.databinding.M001MainFrgBinding;
 import com.bach.animalsoundmvvm.model.Animal;
-import com.bach.animalsoundmvvm.view.CommonVM;
+import com.bach.animalsoundmvvm.view.viewmodel.CommonVM;
 import com.bach.animalsoundmvvm.view.dialog.MiniGameDialog;
+import com.bach.animalsoundmvvm.view.viewmodel.M001MainVM;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Locale;
 
 
-public class M001MainFrg extends BaseFragment<M001MainFrgBinding, CommonVM> {
+public class M001MainFrg extends BaseFragment<M001MainFrgBinding, M001MainVM> {
     public static final String TAG = M001MainFrg.class.getName();
 
     private TextToSpeech tts;
@@ -50,6 +50,10 @@ public class M001MainFrg extends BaseFragment<M001MainFrgBinding, CommonVM> {
                 }
             }
         });
+    }
+
+    private void initData() {
+        viewModel.initData();
     }
 
     private void initAnimalViews() {
@@ -109,7 +113,8 @@ public class M001MainFrg extends BaseFragment<M001MainFrgBinding, CommonVM> {
     }
 
     private void showMiniGame() {
-        MiniGameDialog dialog = new MiniGameDialog(context, App.getInstance().getStorage().listAnimal);
+        MiniGameDialog dialog = new MiniGameDialog(context,
+                this,App.getInstance().getStorage().listAnimal);
         dialog.show();
     }
 
@@ -118,20 +123,6 @@ public class M001MainFrg extends BaseFragment<M001MainFrgBinding, CommonVM> {
         callBack.showFragment(M002DetailFrg.TAG, animal, true);
     }
 
-    private void initData() {
-        App.getInstance().getStorage().listAnimal.clear();
-
-        try {
-            String[] path = App.getInstance().getAssets().list("animal");
-            for (String item : path) {
-                String name = item.replace(".png", "");
-                Animal animal = new Animal("animal/" + item,
-                        "sound/" + name + ".mp3", name);
-                App.getInstance().getStorage().listAnimal.add(animal);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
 //        App.getInstance().getStorage().listAnimal.add(new Animal(R.drawable.ic_elephant, R.raw.elephant, "Elephant"));
 //        App.getInstance().getStorage().listAnimal.add(new Animal(R.drawable.ic_zebra, R.raw.zebra, "Zebra"));
@@ -143,11 +134,10 @@ public class M001MainFrg extends BaseFragment<M001MainFrgBinding, CommonVM> {
 //        App.getInstance().getStorage().listAnimal.add(new Animal(R.drawable.ic_crocodile, R.raw.crocodile, "Crocodile"));
 //        App.getInstance().getStorage().listAnimal.add(new Animal(R.drawable.ic_dolphin, R.raw.dolphin, "Dolphin"));
 
-    }
 
     @Override
-    protected Class<CommonVM> initViewModel() {
-        return CommonVM.class;
+    protected Class<M001MainVM> initViewModel() {
+        return M001MainVM.class;
     }
 
     @Override
